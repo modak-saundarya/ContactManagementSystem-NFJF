@@ -15,6 +15,7 @@ function App() {
   let submit = (e) => {
     e.preventDefault();
     alert(`${firstName},${date},${email},${pincode}`);
+    
 
     setFirstName("");
     setLastName("");

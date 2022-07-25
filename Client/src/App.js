@@ -2,6 +2,9 @@ import { useState } from 'react';
 import './App.css';
 import './styles.css'
 //import { Link } from 'react-router-dom'
+
+
+
 function App() {
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
@@ -15,6 +18,7 @@ function App() {
   let submit = (e) => {
     e.preventDefault();
     alert(`${firstName},${date},${email},${pincode}`);
+    
     
 
     setFirstName("");
@@ -58,6 +62,7 @@ function App() {
 }
 
 // export function App() {
-//   return <Home/>
+//   return <Login/>
+// return <Edit/>
 // }
 export default App;

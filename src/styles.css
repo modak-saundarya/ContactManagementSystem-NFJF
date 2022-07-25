@@ -1,0 +1,39 @@
+/* Global Section.................... */
+
+
+/* Header Section.................. */
+header{
+    background: #7b54d694;
+    padding: 40px;
+}
+
+
+/* Search .......................................... */
+.search .bar{
+    border-radius: 4px;
+}
+
+/* Form Data Global............................... */
+
+/* Left form section......................... */
+.left-side{
+    display: inline-block;
+    /* background: #06f048; */
+    margin-right: 10px;
+
+}
+/* Right form section......................... */
+
+.right-side{
+    display: inline-block;
+    /* background: #3e06e7; */
+
+}
+/* Submit Button.................................... */
+#create_btn{
+    display:block;
+    background: #cbed09;
+    border-radius: 6px;
+    
+    
+}

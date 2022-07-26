@@ -17,9 +17,20 @@ function App() {
 
   let submit = (e) => {
     e.preventDefault();
-    alert(`${firstName},${date},${email},${pincode}`);
+    // alert(`${firstName},${date},${email},${pincode}`);
+    console.warn({firstName,email,mobileNo});
+    let data = {firstName,email,mobileNo}
     
-    
+    fetch("http://localhost:4000/create",{
+      method:'POST',
+      headers:{
+        'Accept':'application/json',
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify(data) 
+    }).then((result)=>{
+      console.warn("result",result);
+    })
 
     setFirstName("");
     setLastName("");

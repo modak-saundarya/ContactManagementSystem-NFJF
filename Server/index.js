@@ -30,9 +30,15 @@ app.get('/',(req,res) => {
     })
 })
 
-app.get('/create',(rq,res) => {
-    //const ADD_QUERY = 'insert into CMS.contact (cols) values (statevalues)'
-     res.send('create user working')
+app.post('/create',(req,res) => {
+    const INSERT_QUERY = 'Insert into dbo.contact (FirstName,Email,ContactNo) values(${req.body.firstName},${req.body.email},${req.body.mobileNo});'
+    new sql.query(INSERT_QUERY, (err, result) => {
+        //handle err
+        if(err) console.log(err)
+
+        res.send(result);
+    })
+
 })
 
 

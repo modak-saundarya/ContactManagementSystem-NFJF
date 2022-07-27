@@ -42,6 +42,7 @@ function Table(){
                         <td>{item.id}</td>
                         <td>{item.title}</td>
                         <td>{item.body}</td>
+                        {/* <td><img src='C:\Users\saumodak\Desktop\icons\Edit.jpg'/></td> */}
                     </tr>
                 ))}
             </tbody>

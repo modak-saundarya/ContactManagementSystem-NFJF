@@ -1,0 +1,22 @@
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid #86BC24;
+   
+  }
+
+  /* th, td {
+    border: 1px solid white;
+    background-color: #96D4D4;
+  } */
+  thead{
+    background-color: aliceblue;
+    border: 2px solid #86BC24;
+  }
+  tr:nth-child(odd) {
+    background-color:#D9D9D9;
+  }
+  td{
+    text-align: center;
+  }

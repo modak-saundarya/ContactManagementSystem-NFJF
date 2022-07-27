@@ -15,8 +15,6 @@ sql.connect(config, err => {
         throw err ;
     }
     console.log("Connection Successful !");
-
-        
 });
 
 //Basic Structure for APIs
@@ -28,6 +26,8 @@ app.get('/',(req,res) => {
         res.send(result);
     })
 })
+
+
 
 app.post('/create',(req,res) => {
     const INSERT_QUERY = 'Insert into dbo.contact (FirstName,Email,ContactNo) values(${req.body.firstName},${req.body.email},${req.body.mobileNo});'

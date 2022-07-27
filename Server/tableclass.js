@@ -12,4 +12,4 @@ class TableClass{
     }
 }
 
-module.exports = Table;
+module.exports = TableClass;

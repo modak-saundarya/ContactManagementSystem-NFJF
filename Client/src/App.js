@@ -6,6 +6,7 @@ import './styles.css'
 
 
 function App() {
+  // Form Values............................................................
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
   const [date,setDate] = useState("");
@@ -17,9 +18,8 @@ function App() {
 
   let submit = (e) => {
     e.preventDefault();
-    // alert(`${firstName},${date},${email},${pincode}`);
     console.warn({firstName,email,mobileNo});
-    let data = {firstName,email,mobileNo}
+    let data = {firstName,lastName,email,mobileNo}
     
     fetch("http://localhost:4000/create",{
       method:'POST',
@@ -41,6 +41,28 @@ function App() {
     setPincode("");
     setMobileNo("");
   }
+  // Search Values.......................................
+  const [searchName,setSearchName] = useState("");
+
+  let searchSubmit = (e) =>{
+    e.preventDefault();
+    console.warn({searchName});
+    fetch("http://localhost:4000/search",{
+      method:'POST',
+      headers:{
+        'Accept':'application/json',
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify(searchName) 
+    }).then((result)=>{
+      console.warn("result",result);
+    })
+
+    setSearchName("");
+
+
+  }
+
 
   return (
     <div className="App">
@@ -48,8 +70,8 @@ function App() {
       <header>Contact Management System</header>
       {/* Search Bar..................................................... */}
       <div class="search">
-        <input class="search bar" type="text" placeholder="Search by Name"/>
-        <button type="submit"><img src=""/></button>
+        <input class="search bar" type="text"  value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by FirstName"/>
+        <button onClick={searchSubmit} type="submit"><img src=""/></button>
       </div>
 
       {/* Create Form.................................................... */}

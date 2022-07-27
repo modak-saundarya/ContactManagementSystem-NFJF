@@ -6,8 +6,8 @@ function Table(){
     const [data,setData] = useState(null);
     useEffect(() => {
         fetch(
-            // 'https://api.github.com/users/modak-saundarya'
-            'https://jsonplaceholder.typicode.com/posts'
+             'https://api.github.com/users/modak-saundarya'
+            // 'https://jsonplaceholder.typicode.com/posts'
         ).then((response) => response.json())
         .then(setData);
     }, []);  
@@ -29,22 +29,24 @@ function Table(){
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-                {/* <tr>
+                <tr>
                     <td>{data.name}</td>
                     <td>{data.id}</td>
                     <td>{data.created_at}</td>
                     <td>{data.login}</td>
 
-                </tr> */}
-                {data.map((item, i) => (
+                </tr>
+                
+                {/* {data.map((item, i) => (
                     <tr key={i}>
                         <td>{item.userId}</td>
                         <td>{item.id}</td>
                         <td>{item.title}</td>
                         <td>{item.body}</td>
-                        {/* <td><img src='C:\Users\saumodak\Desktop\icons\Edit.jpg'/></td> */}
                     </tr>
-                ))}
+                ))} */}
+                
+
             </tbody>
  
         </>

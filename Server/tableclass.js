@@ -1,4 +1,4 @@
-class Table{
+class TableClass{
     constructor(customerID, firstname, lastname, dob, address, city, pin, contactno, email){
         this.customerID = customerID;
         this.firstname = firstname;

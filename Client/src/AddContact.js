@@ -12,11 +12,12 @@ function AddContact(){
     const [city,setCity] = useState("");
     const [pincode,setPincode] = useState("");
     const [mobileNo,setMobileNo] = useState("");
+    const [isDeleted,setIsDeleted] = useState(false);
   
     let submit = async(e) => {
       e.preventDefault();
-      let data = {firstName,lastName,date,email,address,mobileNo,city,pincode,mobileNo};
-      console.warn(data);
+      const userId = JSON.parse(localStorage.getItem('user'))._id;
+      let data = {firstName,lastName,date,email,address,mobileNo,city,pincode,mobileNo,isDeleted,userId};
       setFirstName("");
       setLastName("");
       setDate("");
@@ -26,7 +27,7 @@ function AddContact(){
       setPincode("");
       setMobileNo("");
 
-      
+
       let result= await fetch("http://localhost:4000/add-contact",{
         method:'POST',
         headers:{
@@ -36,6 +37,7 @@ function AddContact(){
         body:JSON.stringify(data) 
       });
       result= await result.json();
+      console.warn(result);
   
       
     }

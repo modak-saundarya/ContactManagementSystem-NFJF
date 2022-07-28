@@ -88,7 +88,7 @@ function Table(){
 
                     {data.map((item, i) => (
                         <tr key={i}>
-                            <td>{item.i}</td>
+                            <td>{i+1}</td>
                             <td>{item.FirstName}</td>
                             <td>{item.LastName}</td>
                             <td>{item.DOB}</td>

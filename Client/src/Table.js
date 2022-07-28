@@ -35,8 +35,19 @@ function Table(){
     //     // }
     //     setSearchName("");
     // }
+    const deleteContact = async(id) => {
+        let result= await fetch("http://localhost:4000/delete/${id}",{
+                        method: 'DELETE'
+                    });
+                result= await result.json();
+                if(result){
+                    alert("Contact is Deleted");
+                        //getContacts();
+                }
+    }
 
-    // let DeleteContact = async(id) => {
+    // let DeleteHandler = (id) => {
+
 
     //     confirmAlert({
     //         title: 'Confirmation Box',
@@ -44,15 +55,8 @@ function Table(){
     //         buttons: [
     //           {
     //             label: 'Yes',
-    //             onClick: async(id) => {
-    //                 let result= await fetch("http://localhost:4000/delete/${id}",{
-    //                     method: 'DELETE'
-    //                 });
-    //                 result= await result.json();
-    //                 if(result){
-    //                     alert("Contact is Deleted");
-    //                     //getContacts();
-    //                 }
+    //             onClick: (id) => {
+    //                 deleteContact(id);
 
     //             }
     //           },
@@ -94,7 +98,7 @@ function Table(){
                             <td>{item.DOB}</td>
                             <td>{item.ContactNo}</td>
                             <td><button class="btn"><i class="fa fa-edit"></i></button></td>
-                            {/* <td><button class="btn" onClick={DeleteContact(id)}><i class="fa fa-trash"></i></button></td> */}
+                            <td><button class="btn" onClick={deleteContact(item._id)}><i class="fa fa-trash"></i></button></td>
                         </tr>
                     ))}
                     

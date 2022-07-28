@@ -21,6 +21,7 @@ function App() {
 
 
         </ul>
+        <h2>Imagine: The Most Happening Home Page</h2>
       </div>
 
       

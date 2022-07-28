@@ -4,73 +4,73 @@ import { useState, useEffect } from 'react';
 import './tableStyles.css'
 
 function Table(){
-    const [contacts,setContacts] = useState(null);
+    const [data,setData] = useState([]);
+
+    const getContacts = async() =>{
+        let result = await fetch('http://localhost:4000/contacts',
+        {method:'GET'});
+        result = await result.json();
+        setData(result); 
+        console.warn(result);         
+   
+    }
+    
 
     useEffect(() => {
         getContacts();
     }, []);  
 
-    const getContacts = async() =>{
-        let result = await fetch('https://localhost:4000/contacts');
-        result = await result.json();
-        setContacts(result);          
-   
-    }
+  
    
     // ------------------------Search------------------------------
-    const [searchName,setSearchName] = useState("");
+    // const [searchName,setSearchName] = useState("");
 
-    let searchSubmit = async (e) =>{
-        e.preventDefault();
-        console.warn({searchName});
-        let result = await fetch("http://localhost:4000/search/${searchName}");
-        result = await result.json();
-        // if(result){
-        // Table(result);
-        // }
-        setSearchName("");
-    }
+    // let searchSubmit = async (e) =>{
+    //     e.preventDefault();
+    //     console.warn({searchName});
+    //     let result = await fetch("http://localhost:4000/search/${searchName}");
+    //     result = await result.json();
+    //     // if(result){
+    //     // Table(result);
+    //     // }
+    //     setSearchName("");
+    // }
 
-    let DeleteContact = async(id) => {
+    // let DeleteContact = async(id) => {
 
-        confirmAlert({
-            title: 'Confirmation Box',
-            message: 'Are you sure you want to do this.',
-            buttons: [
-              {
-                label: 'Yes',
-                onClick: async(id) => {
-                    let result= await fetch("http://localhost:4000/delete/${id}",{
-                        method: 'DELETE'
-                    });
-                    result= await result.json();
-                    if(result){
-                        alert("Contact is Deleted");
-                        //getContacts();
-                    }
+    //     confirmAlert({
+    //         title: 'Confirmation Box',
+    //         message: 'Are you sure you want to do this.',
+    //         buttons: [
+    //           {
+    //             label: 'Yes',
+    //             onClick: async(id) => {
+    //                 let result= await fetch("http://localhost:4000/delete/${id}",{
+    //                     method: 'DELETE'
+    //                 });
+    //                 result= await result.json();
+    //                 if(result){
+    //                     alert("Contact is Deleted");
+    //                     //getContacts();
+    //                 }
 
-                }
-              },
-              {
-                label: 'No',
-                onClick: () => {
-                    return false;
-                }
-              }
-            ]
-          });
+    //             }
+    //           },
+    //           {
+    //             label: 'No',
+    //             onClick: () => {
+    //                 return false;
+    //             }
+    //           }
+    //         ]
+    //       });
 
-    }
+    // }
 
 
     return(
         <>
-            {/* Search Bar..................................................... */}
-            <div class="search">
-                <input class="search bar" type="text"  value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by FirstName"/>
-                <button onClick={searchSubmit} type="submit"><i class="fa fa-search"></i></button>
-            </div>
-            <h3>Search Results.....</h3>
+            <header>Contact List</header>
             <table>
                 
                 <thead>
@@ -86,13 +86,13 @@ function Table(){
                 </thead>
                 <tbody>                
 
-                    {contacts.map((item, i) => (
+                    {data.map((item, i) => (
                         <tr key={i}>
-                            <td>{item.id}</td>
-                            <td>{item.firstName}</td>
-                            <td>{item.lastName}</td>
-                            <td>{item.dob}</td>
-                            <td>{item.mobileNo}</td>
+                            <td>{item.i}</td>
+                            <td>{item.FirstName}</td>
+                            <td>{item.LastName}</td>
+                            <td>{item.DOB}</td>
+                            <td>{item.ContactNo}</td>
                             <td><button class="btn"><i class="fa fa-edit"></i></button></td>
                             {/* <td><button class="btn" onClick={DeleteContact(id)}><i class="fa fa-trash"></i></button></td> */}
                         </tr>

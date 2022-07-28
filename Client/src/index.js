@@ -6,6 +6,7 @@ import Login from './Login'
 import Table from './Table'
 import { BrowserRouter,Routes,Route} from 'react-router-dom';
 import AddContact from './AddContact';
+import Edit from './edit';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,7 @@ root.render(
   <BrowserRouter>
   <Routes>
     <Route path="/" element={<App/>} />
-    <Route path="/login" element={<Login/>} />
+    <Route path="/edit/:id" element={<Edit/>} />
     <Route path="/add" element={<AddContact/>} />
 
     

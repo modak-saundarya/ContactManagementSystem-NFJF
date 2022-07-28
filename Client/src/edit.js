@@ -1,58 +1,102 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import './styles.css';
 
-const Edit=()=>{
-    const [firstName, setFirstName] = React.useState('');
-    const [lastName, setLastName] = React.useState('');
-    const [date, setDate] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [address, setAddress] = React.useState('');
-    const [city, setCity] = React.useState('');
-    const [pincode, setPincode] = React.useState('');
-    const [mobileNo, setMobileNo] = React.useState('');
 
-    const Edit=async()=>{
-        console.warn(firstName, lastName, date, email, address, city, pincode, mobileNo)
-    
+function Edit(){
+
+    const [firstName,setFirstName] = useState("");
+    const [lastName,setLastName] = useState("");
+    const [date,setDate] = useState("");
+    const [email,setEmail] = useState("");
+    const [address,setAddress] = useState("");
+    const [city,setCity] = useState("");
+    const [pincode,setPincode] = useState("");
+    const [mobileNo,setMobileNo] = useState("");
+    const [isDeleted,setIsDeleted] = useState(false);
+
+    const params = useParams();
+    useEffect(()=>{
+       getContact();
+    },[])
+
+    const getContact() = async() =>{
+        console.warn(params);
+        let result = await fetch(`http://localhost:4000/contact/${params.id}`);
+        result = await result.json();
+        console.warn(result);
+        setFirstName("result.firstName");
+        setLastName("result.lastName");
+        setDate("result.date");
+        setEmail("result.email");
+        setAddress("result.address");
+        setCity("result.city");
+        setPincode("result.pincode");
+        setMobileNo("result.mobileNo");
+  
+
+
     }
 
-    return (
-        <div className= 'table'>
-            <h1>Edit Page</h1>
-            <input type="text" placeholder= 'enter first name here' className='inputBox'
-                value={firstName} onChange={(e)=>{setName(e.target.value)}}
-            />
+  
+    let editContact = async(e) => {
+      e.preventDefault();
+    //   const userId = JSON.parse(localStorage.getItem('user'))._id;
+      let data = {firstName,lastName,date,email,address,mobileNo,city,pincode,mobileNo,isDeleted}; //userId
+      console.warn(data);
+      setFirstName("");
+      setLastName("");
+      setDate("");
+      setEmail("");
+      setAddress("");
+      setCity("");
+      setPincode("");
+      setMobileNo("");
 
-            <input type="text" placeholder= 'enter last name here' className='inputBox'
-                value={lastName} onChange={(e)=>{setName(e.target.value)}}
-            />
-            
-            <input type="text" placeholder= 'enter date of birth here' className='inputBox'
-                value={date} onChange={(e)=>{setName(e.target.value)}}
-            />
-            
-            <input type="text" placeholder= 'enter email here' className='inputBox'
-                value={email} onChange={(e)=>{setName(e.target.value)}}
-            />
-            
-            <input type="text" placeholder= 'enter address here' className='inputBox'
-                value={address} onChange={(e)=>{setName(e.target.value)}}
-            />
 
-            <input type="text" placeholder= 'enter city here' className='inputBox'
-                value={city} onChange={(e)=>{setName(e.target.value)}}
-            />
+    //   let result= await fetch("http://localhost:4000/add-contact",{
+    //     method:'POST',
+    //     headers:{
+    //       'Accept':'application/json',
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body:JSON.stringify(data) 
+    //   });
+    //   result= await result.json();
+    //   console.warn(result);
+  
+      
+    }
 
-            <input type="text" placeholder= 'enter pincode here' className='inputBox'
-                value={pincode} onChange={(e)=>{setName(e.target.value)}}
-            />
-
-            <input type="text" placeholder= 'enter mobile number here' className='inputBox'
-                value={mobileNo} onChange={(e)=>{setName(e.target.value)}}
-            />
-            
-            <button onClick={Edit} className='appButton'>Edit</button>
+    return(
+    <>
+        <header>EDIT CONTACT FORM</header>
+        <form onSubmit={editContact}>
+        <div class="form-data">
+        <section class="left-side">
+          First Name: <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)}/><br/>
+          Last Name: <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}/><br/>
+          DOB: <input type="date" value={date} onChange={(e) => setDate(e.target.value)}/><br/>
+          Email ID: <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/><br/>
+        </section>
+        <section class="right-side">
+          Address: <input type="text" value={address} onChange={(e) => setAddress(e.target.value)}/><br/>
+          City: <input type="text" value={city} onChange={(e) => setCity(e.target.value)}/><br/>
+          Pincode: <input type="text" value={pincode} onChange={(e) => setPincode(e.target.value)}/><br/>
+          Mobile No.: <input type="text" value={mobileNo} onChange={(e) => setMobileNo(e.target.value)}/><br/>
+        </section>
         </div>
+        <div class="btn">
+          <input class="create_btn" type="submit" value="SAVE"/>
+        </div>
+        </form>
+    </>
+
     )
+  
+
+    
+
 }
 
-export default Edit
+export default Edit;

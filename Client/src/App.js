@@ -3,6 +3,7 @@ import './App.css';
 import { Link } from 'react-router-dom';
 import Table from './Table';
 import AddContact from './AddContact';
+import Edit from './edit';
 
 
 

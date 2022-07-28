@@ -2,6 +2,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import { useState, useEffect } from 'react';
 import './tableStyles.css'
+import { Link } from 'react-router-dom';
 
 function Table(){
     const [data,setData] = useState([]);
@@ -99,7 +100,7 @@ function Table(){
                             <td>{item.LastName}</td>
                             <td>{item.DOB}</td>
                             <td>{item.ContactNo}</td>
-                            <td><button class="btn"><i class="fa fa-edit"></i></button></td>
+                            <td><button class="btn"><Link to={'/edit/'+item._id}><i class="fa fa-edit"></i></Link></button></td>
                             <td><button class="btn" onClick={()=>deleteContact(item._id)}><i class="fa fa-trash"></i></button></td>
                         </tr>
                     ))}

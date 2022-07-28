@@ -10,7 +10,7 @@ const contactsSchema = new mongoose.Schema({
     Pincode: String,
     ContactNo: String,
     Email: String,
-    isDeleted: BOOLEAN
+    isDeleted: Boolean
 });
 
 

@@ -35,16 +35,18 @@ function Table(){
     //     // }
     //     setSearchName("");
     // }
-    const deleteContact = async(id) => {
-        let result= await fetch("http://localhost:4000/delete/${id}",{
-                        method: 'DELETE'
+    const deleteContact = async (id) => {
+        console.warn(id);
+        let result= await fetch(`http://localhost:4000/contact/${id}`,{
+                        method: 'Delete'
                     });
                 result= await result.json();
                 if(result){
                     alert("Contact is Deleted");
-                        //getContacts();
-                }
+                    getContacts();
+        }
     }
+    
 
     // let DeleteHandler = (id) => {
 
@@ -91,14 +93,14 @@ function Table(){
                 <tbody>                
 
                     {data.map((item, i) => (
-                        <tr key={i}>
+                        <tr key={item._id}>
                             <td>{i+1}</td>
                             <td>{item.FirstName}</td>
                             <td>{item.LastName}</td>
                             <td>{item.DOB}</td>
                             <td>{item.ContactNo}</td>
                             <td><button class="btn"><i class="fa fa-edit"></i></button></td>
-                            <td><button class="btn" onClick={deleteContact(item._id)}><i class="fa fa-trash"></i></button></td>
+                            <td><button class="btn" onClick={()=>deleteContact(item._id)}><i class="fa fa-trash"></i></button></td>
                         </tr>
                     ))}
                     

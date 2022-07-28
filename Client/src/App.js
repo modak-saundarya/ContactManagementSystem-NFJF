@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import './styles.css'
+import Table from './Table';
 //import { Link } from 'react-router-dom'
 
 
@@ -44,19 +45,14 @@ function App() {
   // Search Values.......................................
   const [searchName,setSearchName] = useState("");
 
-  let searchSubmit = (e) =>{
+  let searchSubmit = async (e) =>{
     e.preventDefault();
     console.warn({searchName});
-    fetch("http://localhost:4000/search",{
-      method:'POST',
-      headers:{
-        'Accept':'application/json',
-        'Content-Type': 'application/json'
-      },
-      body:JSON.stringify(searchName) 
-    }).then((result)=>{
-      console.warn("result",result);
-    })
+    let result = await fetch("http://localhost:4000/search/${searchName}");
+    result = await result.json();
+    if(result){
+      Table(result);
+    }
 
     setSearchName("");
 

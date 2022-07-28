@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import './tableStyles.css'
 // function TableData({name,location,id})
+const [data,setData] = useState(null);
 
-function Table(){
-    const [data,setData] = useState(null);
+function Table(setData){
+    // const [data,setData] = useState(null);
+    
     useEffect(() => {
         fetch(
              'https://api.github.com/users/modak-saundarya'

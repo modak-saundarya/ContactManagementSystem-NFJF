@@ -18,6 +18,20 @@ function Table(){
     //     return(
     //         <pre>{JSON.stringify(data,null,2)}</pre>
     //     );
+    // ------------------------Search------------------------------
+    const [searchName,setSearchName] = useState("");
+
+    let searchSubmit = async (e) =>{
+        e.preventDefault();
+        console.warn({searchName});
+        let result = await fetch("http://localhost:4000/search/${searchName}");
+        result = await result.json();
+        // if(result){
+        // Table(result);
+        // }
+        setSearchName("");
+    }
+
     let DeleteContact = async(id) => {
 
         confirmAlert({
@@ -52,7 +66,12 @@ function Table(){
 
     return(
         <>
-            <header>Search Results.....</header>
+            {/* Search Bar..................................................... */}
+            <div class="search">
+                <input class="search bar" type="text"  value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by FirstName"/>
+                <button onClick={searchSubmit} type="submit"><i class="fa fa-search"></i></button>
+            </div>
+            <h3>Search Results.....</h3>
             <table>
                 
                 <thead>

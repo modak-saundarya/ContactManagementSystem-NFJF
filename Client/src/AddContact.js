@@ -1,3 +1,5 @@
+import './styles.css';
+
 import { useState } from 'react';
 
 function AddContact(){
@@ -37,7 +39,10 @@ function AddContact(){
     }
 
     return(
+    <>
+        <header>ADD CONTACT FORM</header>
         <form onSubmit={submit}>
+        <div class="form-data">
         <section class="left-side">
           First Name: <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)}/><br/>
           Last Name: <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}/><br/>
@@ -50,8 +55,12 @@ function AddContact(){
           Pincode: <input type="number" value={pincode} onChange={(e) => setPincode(e.target.value)}/><br/>
           Mobile No.: <input type="number" value={mobileNo} onChange={(e) => setMobileNo(e.target.value)}/><br/>
         </section>
-          <input id="create_btn" type="submit" value="Create User"/>
-      </form>
+        </div>
+        <div class="btn">
+          <input class="create_btn" type="submit" value="Create User"/>
+        </div>
+        </form>
+    </>
 
     )
   

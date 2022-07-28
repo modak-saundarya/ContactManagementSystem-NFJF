@@ -10,6 +10,7 @@ header{
     color: #FFF;
     padding: 20px;
     margin-bottom:50px ;
+    text-align: center;
 }
 
 
@@ -19,12 +20,17 @@ header{
 }
 
 /* Form Data Global............................... */
+.form-data{
+    display:flex;
+    justify-content: center;
+}
 
 /* Left form section......................... */
 .left-side{
     display: inline-block;
     /* background: #06f048; */
-    margin-right: 10px;
+    margin-left: 10px;
+    
 
 }
 /* Right form section......................... */
@@ -32,13 +38,22 @@ header{
 .right-side{
     display: inline-block;
     /* background: #3e06e7; */
+    margin-left: 10px;
+
+
 
 }
 /* Submit Button.................................... */
-#create_btn{
-    display:block;
+.btn{
+    text-align: centre;
+}
+.create_btn{
     background: #86BC24;
     border-radius: 6px;
+    display:inline;
+    justify-content: center;
+    margin:0;
+
     
     
 }

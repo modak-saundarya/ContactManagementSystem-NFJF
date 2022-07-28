@@ -17,8 +17,8 @@ const uri = "mongodb://localhost:27017/CMS"
 // connectDb();
 
 app.post("/add-contact",async (req, resp)=>{
-let contacts = new contacts(req.body);
-let result = await contacts.save();
+let Contacts = new contacts(req.body);
+let result = await Contacts.save();
 resp.send(result)
 })
 

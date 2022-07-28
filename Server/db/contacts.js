@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { BOOLEAN } = require('sequelize');
 
 const contactsSchema = new mongoose.Schema({
     FirstName: String,
@@ -8,7 +9,8 @@ const contactsSchema = new mongoose.Schema({
     City: String,
     Pincode: String,
     ContactNo: String,
-    Email: String
+    Email: String,
+    isDeleted: BOOLEAN
 });
 
 

@@ -41,4 +41,11 @@ app.delete("/contact/:id", async(req, resp)=>{
     resp.send(result);
 });
 
+app.get("/search/:FirstName", function(req,resp){
+var regex = new RegExp(req.params.FirstName, 'i');
+contacts.find({FirstName:regex}).then((result)=>{
+    resp.status(200).json(result)
+})
+})
+
 app.listen(4000);

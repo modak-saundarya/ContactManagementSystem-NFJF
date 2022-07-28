@@ -2,11 +2,13 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 
+const uri = "mongodb://localhost:27017/CMS"
+
 const connectDb = async ()=>{
-    await mongoose.connect("mongodb+srv://NFJF:nfjf123@cluster0.8vajx.mongodb.net/?retryWrites=true&w=majority/cms");
+    await mongoose.connect(uri);
     const contactSchema = new mongoose.Schema({})
-    const contact = mongoose.model("contacts", contactSchema)
-    const data = await contact.find({});
+    const contacts = mongoose.model("contacts", contactSchema)
+    const data = await contacts.find({});
     console.warn(data);
 }
 

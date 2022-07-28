@@ -71,7 +71,7 @@ function App() {
       {/* Search Bar..................................................... */}
       <div class="search">
         <input class="search bar" type="text"  value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Search by FirstName"/>
-        <button onClick={searchSubmit} type="submit"><img src=""/></button>
+        <button onClick={searchSubmit} type="submit"><i class="fa fa-search"></i></button>
       </div>
 
       {/* Create Form.................................................... */}

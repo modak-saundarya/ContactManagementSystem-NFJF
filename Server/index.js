@@ -41,4 +41,12 @@ app.delete("/contact/:id", async(req, resp)=>{
     resp.send(result);
 });
 
+app.put("/contact/:id", async (req, res) =>{
+    let result = await contacts.updateOne(
+        {_id: req.params.id},
+        {$set: req.body}
+    )
+    res.send(result)
+})
+
 app.listen(4000);

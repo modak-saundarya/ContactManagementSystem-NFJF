@@ -16,7 +16,7 @@ function AddContact(){
     let submit = async(e) => {
       e.preventDefault();
       console.warn({firstName,email,mobileNo});
-      let data = {firstName,lastName,email,mobileNo}
+      let data = {firstName,lastName,date,email,address,mobileNo,city,pincode,mobileNo}
       
       let result= await fetch("http://localhost:4000/create",{
         method:'POST',
@@ -52,8 +52,8 @@ function AddContact(){
         <section class="right-side">
           Address: <input type="text" value={address} onChange={(e) => setAddress(e.target.value)}/><br/>
           City: <input type="text" value={city} onChange={(e) => setCity(e.target.value)}/><br/>
-          Pincode: <input type="number" value={pincode} onChange={(e) => setPincode(e.target.value)}/><br/>
-          Mobile No.: <input type="number" value={mobileNo} onChange={(e) => setMobileNo(e.target.value)}/><br/>
+          Pincode: <input type="text" value={pincode} onChange={(e) => setPincode(e.target.value)}/><br/>
+          Mobile No.: <input type="text" value={mobileNo} onChange={(e) => setMobileNo(e.target.value)}/><br/>
         </section>
         </div>
         <div class="btn">

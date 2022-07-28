@@ -1,7 +1,9 @@
 const { response } = require('express')
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const contacts = require('./db/contacts')
+const cors = require('cors')
 const app = express()
 
 const uri = "mongodb://localhost:27017/CMS"
@@ -12,6 +14,12 @@ const connectDb = async ()=>{
 
 
 connectDb();
+
+app.use(bodyParser.json())
+
+app.use(cors())
+
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.post("/add-contact",async (req, resp)=>{
 let Contacts = new contacts(req.body);

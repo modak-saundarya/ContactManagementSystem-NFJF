@@ -4,20 +4,19 @@ import { useState, useEffect } from 'react';
 import './tableStyles.css'
 
 function Table(){
-    const [data,setData] = useState(null);
+    const [contacts,setContacts] = useState(null);
 
     useEffect(() => {
-        fetch(
-             'https://api.github.com/users/modak-saundarya'
-            // 'https://jsonplaceholder.typicode.com/posts'
-        ).then((response) => response.json())
-        .then(setData);
+        getContacts();
     }, []);  
-    // empty [] to make api request only once when the page renders.6.1
-    // if(data)
-    //     return(
-    //         <pre>{JSON.stringify(data,null,2)}</pre>
-    //     );
+
+    const getContacts = async() =>{
+        let result = await fetch('https://localhost:4000/contacts');
+        result = await result.json();
+        setContacts(result);          
+   
+    }
+   
     // ------------------------Search------------------------------
     const [searchName,setSearchName] = useState("");
 
@@ -87,7 +86,7 @@ function Table(){
                 </thead>
                 <tbody>                
 
-                    {data.map((item, i) => (
+                    {contacts.map((item, i) => (
                         <tr key={i}>
                             <td>{item.id}</td>
                             <td>{item.firstName}</td>

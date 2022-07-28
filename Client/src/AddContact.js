@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import './styles.css';
 
-import { useState } from 'react';
 
 function AddContact(){
 
@@ -15,8 +15,17 @@ function AddContact(){
   
     let submit = async(e) => {
       e.preventDefault();
-      console.warn({firstName,email,mobileNo});
-      let data = {firstName,lastName,date,email,address,mobileNo,city,pincode,mobileNo}
+      let data = {firstName,lastName,date,email,address,mobileNo,city,pincode,mobileNo};
+      console.warn(data);
+      setFirstName("");
+      setLastName("");
+      setDate("");
+      setEmail("");
+      setAddress("");
+      setCity("");
+      setPincode("");
+      setMobileNo("");
+
       
       let result= await fetch("http://localhost:4000/create",{
         method:'POST',
@@ -28,14 +37,7 @@ function AddContact(){
       });
       result= await result.json();
   
-      setFirstName("");
-      setLastName("");
-      setDate("");
-      setEmail("");
-      setAddress("");
-      setCity("");
-      setPincode("");
-      setMobileNo("");
+      
     }
 
     return(

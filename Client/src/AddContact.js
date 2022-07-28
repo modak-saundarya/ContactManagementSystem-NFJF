@@ -27,7 +27,7 @@ function AddContact(){
       setMobileNo("");
 
       
-      let result= await fetch("http://localhost:4000/create",{
+      let result= await fetch("http://localhost:4000/add-contact",{
         method:'POST',
         headers:{
           'Accept':'application/json',

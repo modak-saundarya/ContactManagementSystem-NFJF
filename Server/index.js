@@ -41,6 +41,16 @@ app.delete("/contact/:id", async(req, resp)=>{
     resp.send(result);
 });
 
+app.get("/contact/:id", async (req, res)=>{
+    let result = await contacts.findOne({ _id: req.params.id })
+    if(result){
+        res.send(result)
+    }else{
+        res.send({"result": "No record found."})
+    }
+})
+
+
 app.put("/contact/:id", async(req, res)=>{
     let result = contacts.updateOne(
         {_id: erq.params.id},

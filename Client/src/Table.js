@@ -95,7 +95,7 @@ function Table(){
                             <td>{item.dob}</td>
                             <td>{item.mobileNo}</td>
                             <td><button class="btn"><i class="fa fa-edit"></i></button></td>
-                            <td><button class="btn" onClick={DeleteContact(id)}><i class="fa fa-trash"></i></button></td>
+                            {/* <td><button class="btn" onClick={DeleteContact(id)}><i class="fa fa-trash"></i></button></td> */}
                         </tr>
                     ))}
                     

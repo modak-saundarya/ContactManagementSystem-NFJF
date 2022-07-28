@@ -1,23 +1,16 @@
-import express from "express";
-import cors from "cors";
-import mongoose from 'mongoose';
-import bodyParser from "body-parser";
-import contactsRoutes from "./Routes/contacts.js";
+const express = require('express')
+const mongoose = require('mongoose')
+const app = express()
 
-const app = express();
+const connectDb = async ()=>{
+    await mongoose.connect("mongodb+srv://NFJF:nfjf123@cluster0.8vajx.mongodb.net/?retryWrites=true&w=majority/cms");
+    const contactSchema = new mongoose.Schema({})
+    const contact = mongoose.model("contacts", contactSchema)
+    const data = await contact.find({});
+    console.warn(data);
+}
 
-app.use('/contacts', contactsRoutes)
 
-app.use(bodyParser.json({extended: true}));
+connectDb();
 
-app.use(bodyParser.urlencoded({extended: true}))
-
-app.use(cors())
-
-const CONNECTION_URL = 'mongodb+srv://NFJF:nfjf123@cluster0.8vajx.mongodb.net/?retryWrites=true&w=majority';
-
-const PORT = process.env.PORT || 4000;
-
-mongoose.connect(CONNECTION_URL)
-    .then(()=> app.listen(PORT, ()=>console.log('Server running on port: ' + PORT)))
-    .catch((error)=> console.log(error.message))
+app.listen(4000);

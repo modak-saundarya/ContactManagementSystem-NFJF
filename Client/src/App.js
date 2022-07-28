@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './App.css';
-import './styles.css';
 import { Link } from 'react-router-dom';
 import Table from './Table';
 import AddContact from './AddContact';
@@ -15,8 +14,8 @@ function App() {
       {/* Heading of the project........................................ */}
       <header>Contact Management System</header>
       <div>
-        <ul>
-          <li><Link to="/">Add Contact</Link> </li>
+        <ul class="nav-ul">
+          <li><Link to="/add">Add Contact</Link> </li>
           <li><Link to="/edit">Edit Contact</Link> </li>
           <li><Link to="/table">Search Contact </Link> </li>
 
@@ -25,7 +24,7 @@ function App() {
       </div>
 
       
-      <AddContact/>
+      
 
       {/* Create Form.................................................... */}
     </div>

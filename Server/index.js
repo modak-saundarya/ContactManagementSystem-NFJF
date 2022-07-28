@@ -25,7 +25,7 @@ app.post("/add-contact",async (req, resp)=>{
 let Contacts = new contacts(req.body);
 let result = await Contacts.save();
 resp.send(result)
-})
+});
 
 app.get("/contacts", async(req, res)=>{
     const contact = await contacts.find();
@@ -34,6 +34,11 @@ app.get("/contacts", async(req, res)=>{
     }else{
         res.send({result:"No contact found"})
     }
-})
+});
+
+app.delete("/contact/:id", async(req, resp)=>{
+    const result = await contacts.deleteOne({_id:req.params.id})
+    resp.send(result);
+});
 
 app.listen(4000);

@@ -41,6 +41,14 @@ app.delete("/contact/:id", async(req, resp)=>{
     resp.send(result);
 });
 
+app.put("/contact/:id", async(req, res)=>{
+    let result = contacts.updateOne(
+        {_id: erq.params.id},
+        {$set: req.body}
+    )
+    resp.send(result)
+})
+
 app.get("/search/:FirstName", function(req,resp){
 var regex = new RegExp(req.params.FirstName, 'i');
 contacts.find({FirstName:regex}).then((result)=>{

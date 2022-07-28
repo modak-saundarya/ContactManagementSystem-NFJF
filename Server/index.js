@@ -53,11 +53,12 @@ app.get("/contact/:id", async (req, res)=>{
 
 app.put("/contact/:id", async(req, res)=>{
     let result = contacts.updateOne(
-        {_id: erq.params.id},
+        {_id: req.params.id},
         {$set: req.body}
     )
-    resp.send(result)
+    res.send(result)
 })
+
 
 app.get("/search/:FirstName", function(req,resp){
 var regex = new RegExp(req.params.FirstName, 'i');

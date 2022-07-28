@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './styles.css';
 
 
@@ -16,23 +16,25 @@ function Edit(){
     const [isDeleted,setIsDeleted] = useState(false);
 
     const params = useParams();
+    const navigate = useNavigate();
     useEffect(()=>{
        getContact();
     },[])
 
-    const getContact() = async() =>{
+    const getContact = async() =>{
         console.warn(params);
         let result = await fetch(`http://localhost:4000/contact/${params.id}`);
         result = await result.json();
         console.warn(result);
-        setFirstName("result.firstName");
-        setLastName("result.lastName");
-        setDate("result.date");
-        setEmail("result.email");
-        setAddress("result.address");
-        setCity("result.city");
-        setPincode("result.pincode");
-        setMobileNo("result.mobileNo");
+        setFirstName(result.FirstName);
+        setLastName(result.LastName);
+        
+        // setDate(JSON.stringify(result.DOB));
+        setEmail(result.Email);
+        setAddress(result.Address);
+        setCity(result.City);
+        setPincode(result.Pincode);
+        setMobileNo(result.ContactNo);
   
 
 
@@ -54,16 +56,17 @@ function Edit(){
       setMobileNo("");
 
 
-    //   let result= await fetch("http://localhost:4000/add-contact",{
-    //     method:'POST',
-    //     headers:{
-    //       'Accept':'application/json',
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body:JSON.stringify(data) 
-    //   });
-    //   result= await result.json();
-    //   console.warn(result);
+      let result= await fetch(`http://localhost:4000/contact/${params.id}`,{
+        method:'Put',
+        headers:{
+          'Accept':'application/json',
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(data) 
+      });
+      result= await result.json();
+      console.warn(result);
+      navigate('/')
   
       
     }

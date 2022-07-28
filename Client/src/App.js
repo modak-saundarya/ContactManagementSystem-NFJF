@@ -17,7 +17,7 @@ function App() {
         <ul class="nav-ul">
           <li><Link to="/add">Add Contact</Link> </li>
           <li><Link to="/edit">Edit Contact</Link> </li>
-          <li><Link to="/table">Search Contact </Link> </li>
+          <li><Link to="/table">Contact List </Link> </li>
 
 
         </ul>

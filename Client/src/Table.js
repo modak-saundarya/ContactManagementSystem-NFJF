@@ -1,11 +1,11 @@
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import { useState, useEffect } from 'react';
 import './tableStyles.css'
-// function TableData({name,location,id})
-const [data,setData] = useState(null);
 
-function Table(setData){
-    // const [data,setData] = useState(null);
-    
+function Table(){
+    const [data,setData] = useState(null);
+
     useEffect(() => {
         fetch(
              'https://api.github.com/users/modak-saundarya'
@@ -18,6 +18,37 @@ function Table(setData){
     //     return(
     //         <pre>{JSON.stringify(data,null,2)}</pre>
     //     );
+    let DeleteContact = async(id) => {
+
+        confirmAlert({
+            title: 'Confirmation Box',
+            message: 'Are you sure you want to do this.',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick: async(id) => {
+                    let result= await fetch("http://localhost:4000/delete/${id}",{
+                        method: 'DELETE'
+                    });
+                    result= await result.json();
+                    if(result){
+                        alert("Contact is Deleted");
+                        //getContacts();
+                    }
+
+                }
+              },
+              {
+                label: 'No',
+                onClick: () => {
+                    return false;
+                }
+              }
+            ]
+          });
+
+    }
+
 
     return(
         <>
@@ -35,66 +66,19 @@ function Table(setData){
                         <th>Delete</th>
                     </tr>
                 </thead>
-                <tbody>
-                   
-    {/* DUMMY DATA............................................................... */}
-                    <tr>
-                        <td>ID1</td>
-                        <td>D_FName1</td>
-                        <td>D_LName1</td>
-                        <td>D_DOB1</td>
-                        <td>D_Mobile1</td>
-                        <td><button class="btn"><i class="fa fa-edit"></i></button></td>
-                        <td><button class="btn"><i class="fa fa-trash"></i></button></td>
-                    </tr>
+                <tbody>                
 
-                    <tr>
-                        <td>ID2</td>
-                        <td>D_FName2</td>
-                        <td>D_LName2</td>
-                        <td>D_DOB2</td>
-                        <td>D_Mobile2</td>
-                        <td><button class="btn"><i class="fa fa-edit"></i></button></td>
-                        <td><button class="btn"><i class="fa fa-trash"></i></button></td>
-                    </tr>
-
-                    <tr>
-                        <td>ID3</td>
-                        <td>D_FName3</td>
-                        <td>D_LName3</td>
-                        <td>D_DOB3</td>
-                        <td>D_Mobile3</td>
-                        <td><button class="btn"><i class="fa fa-edit"></i></button></td>
-                        <td><button class="btn"><i class="fa fa-trash"></i></button></td>
-                    </tr>
-
-                    <tr>
-                        <td>ID4</td>
-                        <td>D_FName4</td>
-                        <td>D_LName4</td>
-                        <td>D_DOB4</td>
-                        <td>D_Mobile4</td>
-                        <td><button class="btn"><i class="fa fa-edit"></i></button></td>
-                        <td><button class="btn"><i class="fa fa-trash"></i></button></td>
-                    </tr>
-
-
-                    {/* <tr>
-                        <td>{data.name}</td>
-                        <td>{data.id}</td>
-                        <td>{data.created_at}</td>
-                        <td>{data.login}</td>
-
-                    </tr> */}
-                    
-                    {/* {data.map((item, i) => (
+                    {data.map((item, i) => (
                         <tr key={i}>
-                            <td>{item.userId}</td>
                             <td>{item.id}</td>
-                            <td>{item.title}</td>
-                            <td>{item.body}</td>
+                            <td>{item.firstName}</td>
+                            <td>{item.lastName}</td>
+                            <td>{item.dob}</td>
+                            <td>{item.mobileNo}</td>
+                            <td><button class="btn"><i class="fa fa-edit"></i></button></td>
+                            <td><button class="btn" onClick={DeleteContact(id)}><i class="fa fa-trash"></i></button></td>
                         </tr>
-                    ))} */}
+                    ))}
                     
 
                 </tbody>

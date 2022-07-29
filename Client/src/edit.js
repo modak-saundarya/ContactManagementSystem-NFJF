@@ -42,7 +42,7 @@ function Edit(){
 
   
     let editContact = async(e) => {
-      e.preventDefault();
+      // e.preventDefault();
     //   const userId = JSON.parse(localStorage.getItem('user'))._id;
       let data = {firstName,lastName,date,email,address,mobileNo,city,pincode,mobileNo,isDeleted}; //userId
       console.warn(data);
@@ -62,7 +62,8 @@ function Edit(){
           'Accept':'application/json',
           'Content-Type': 'application/json'
         },
-        body:JSON.stringify(data) 
+        body:data
+        // body:JSON.stringify(data) 
       });
       result= await result.json();
       console.warn(result);

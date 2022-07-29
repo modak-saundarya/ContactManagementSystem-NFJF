@@ -26,16 +26,20 @@ function Table(){
     // ------------------------Search------------------------------
     // const [searchName,setSearchName] = useState("");
 
-    // let searchSubmit = async (e) =>{
-    //     e.preventDefault();
-    //     console.warn({searchName});
-    //     let result = await fetch("http://localhost:4000/search/${searchName}");
-    //     result = await result.json();
-    //     // if(result){
-    //     // Table(result);
-    //     // }
-    //     setSearchName("");
-    // }
+    let searchHandler = async (e) =>{
+        console.warn(e.target.value);
+        let searchName = e.target.value;
+        if(searchName){
+            let result = await fetch(`http://localhost:4000/search/${searchName}`);
+            result = await result.json();
+            if(result){
+             setData(result);
+            } 
+        }else{
+            getContacts();
+        }
+
+    }
     const deleteContact = async (id) => {
         console.warn(id);
         let result= await fetch(`http://localhost:4000/contact/${id}`,{
@@ -78,6 +82,7 @@ function Table(){
     return(
         <>
             <header>Contact List</header>
+            <input type="text" class="search-box" placeholder='Search By First Name' onChange={searchHandler}/>
             <table>
                 
                 <thead>

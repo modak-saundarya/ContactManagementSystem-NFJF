@@ -23,8 +23,6 @@ function Table(){
 
   
    
-    // ------------------------Search------------------------------
-    // const [searchName,setSearchName] = useState("");
 
     let searchHandler = async (e) =>{
         console.warn(e.target.value);

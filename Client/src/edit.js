@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './styles.css';
-
+import {parse, stringify, toJSON, fromJSON} from 'flatted';
+// const stringify = require('json-stringify-safe');
+// import stringify from 'json-stringify-safe';
 
 function Edit(){
 
@@ -62,10 +64,11 @@ function Edit(){
           'Accept':'application/json',
           'Content-Type': 'application/json'
         },
-        body:data
-        // body:JSON.stringify(data) 
+        // body:data
+        body:Flatted.parse(Flatted.stringify(data))
       });
       result= await result.json();
+      // result = await JSON.parse(result)
       console.warn(result);
       navigate('/')
   

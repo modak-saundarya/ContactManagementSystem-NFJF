@@ -20,3 +20,11 @@ table {
   td{
     text-align: center;
   }
+  /* Search Styles....................... */
+  .search-box{
+    width: 400px;
+    margin: 20px;
+    height: 30px;
+    padding-left: 10px;
+    float: right;
+  }

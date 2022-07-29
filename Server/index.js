@@ -22,9 +22,20 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.post("/add-contact",async (req, resp)=>{
-    let Contacts = new contacts(req.body);
-    let result = await Contacts.save();
-    resp.send(result)
+    const Contacts = new contacts({
+        FirstName:req.body.firstName,
+        LastName:req.body.lastName,
+        DOB: req.body.date,
+        Address:req.body.address,
+        City:req.body.city,
+        Pincode:req.body.pincode,
+        ContactNo:req.body.mobileNo,
+        Email:req.body.email,
+        isDeleted:req.body.isDeleted
+    });
+// let Contacts = new contacts(req.body);
+let result = await Contacts.save();
+resp.send(result)
 });
 
 app.get("/contacts", async(req, res)=>{

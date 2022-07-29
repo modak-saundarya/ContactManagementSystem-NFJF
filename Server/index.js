@@ -15,16 +15,16 @@ const connectDb = async ()=>{
 
 connectDb();
 
-app.use(bodyParser.json())
+app.use(express.json())
 
 app.use(cors())
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.post("/add-contact",async (req, resp)=>{
-let Contacts = new contacts(req.body);
-let result = await Contacts.save();
-resp.send(result)
+    let Contacts = new contacts(req.body);
+    let result = await Contacts.save();
+    resp.send(result)
 });
 
 app.get("/contacts", async(req, res)=>{

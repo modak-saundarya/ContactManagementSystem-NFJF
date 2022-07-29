@@ -64,8 +64,8 @@ function Edit(){
           'Accept':'application/json',
           'Content-Type': 'application/json'
         },
-        // body:data
-        body:Flatted.parse(Flatted.stringify(data))
+         body:data
+        // body:Flatted.parse(Flatted.stringify(data))
       });
       result= await result.json();
       // result = await JSON.parse(result)

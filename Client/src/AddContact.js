@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import './styles.css';
 
 
@@ -16,8 +17,18 @@ function AddContact(){
   
     let submit = async(e) => {
       e.preventDefault();
-      const userId = JSON.parse(localStorage.getItem('user'))._id;
-      let data = {firstName,lastName,date,email,address,mobileNo,city,pincode,mobileNo,isDeleted,userId};
+      // const userId = JSON.parse(localStorage.getItem('user'))._id;
+      let data = {firstName,lastName,date,email,address,mobileNo,city,pincode,isDeleted};
+      console.warn(data);
+      axios.post("http://localhost:4000/add-contact",{
+        body:data
+      }).then((response)=>{
+        console.warn(response);
+
+      }).catch((err)=>{
+        console.warn(err);
+
+      })
       setFirstName("");
       setLastName("");
       setDate("");
@@ -27,17 +38,19 @@ function AddContact(){
       setPincode("");
       setMobileNo("");
 
+      
 
-      let result= await fetch("http://localhost:4000/add-contact",{
-        method:'POST',
-        headers:{
-          'Accept':'application/json',
-          'Content-Type': 'application/json'
-        },
-        body:JSON.stringify(data) 
-      });
-      result= await result.json();
-      console.warn(result);
+
+      // let result= await fetch("http://localhost:4000/add-contact",{
+      //   method:'POST',
+      //   headers:{
+      //     'Accept':'application/json',
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body:JSON.stringify(data) 
+      // });
+      // result= await result.json();
+      // console.warn(result);
   
       
     }
